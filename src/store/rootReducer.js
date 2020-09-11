@@ -1,5 +1,8 @@
+const initialState = {
+  persons: []
+}
 
-const rootReducer = (state, action) => {
+const rootReducer = (state = initialState, action) => {
   return state
 }
 
