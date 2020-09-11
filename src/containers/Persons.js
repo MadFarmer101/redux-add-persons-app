@@ -4,18 +4,6 @@ import Person from "../components/Person/Person";
 import AddPerson from "../components/AddPerson/AddPerson";
 
 class Persons extends Component {
-  state = {
-    persons: [],
-  };
-
-  personDeletedHandler = (personId) => {
-    this.setState((prevState) => {
-      return {
-        persons: prevState.persons.filter((person) => person.id !== personId),
-      };
-    });
-  };
-
   render() {
     return (
       <div>
@@ -25,7 +13,7 @@ class Persons extends Component {
             key={person.id}
             name={person.name}
             age={person.age}
-            clicked={() => this.personDeletedHandler(person.id)}
+            clicked={() => this.props.onDeletePerson(person.id)}
           />
         ))}
       </div>
@@ -47,9 +35,10 @@ const mapDispatchToProps = (dispatch) => {
         payload: {
           id: Math.random(),
           name: "Mad",
-          age: Math.floor(Math.random() * 100),
+          age: Math.floor(Math.random() * 40),
         },
       }),
+    onDeletePerson: (id) => dispatch({ type: 'DELETE_PERSON', payload: id})
   };
 };
 
