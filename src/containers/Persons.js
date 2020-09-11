@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import Person from "../components/Person/Person";
 import AddPerson from "../components/AddPerson/AddPerson";
 
@@ -30,7 +30,7 @@ class Persons extends Component {
   render() {
     return (
       <div>
-        <AddPerson personAdded={this.personAddedHandler} />
+        <AddPerson personAdded={this.props.onAddPerson} />
         {this.props.persons.map((person) => (
           <Person
             key={person.id}
@@ -46,8 +46,22 @@ class Persons extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    persons: state.persons
-  }
-}
+    persons: state.persons,
+  };
+};
 
-export default connect(mapStateToProps)(Persons);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddPerson: () =>
+      dispatch({
+        type: "ADD_PERSON",
+        payload: {
+          id: Math.random(),
+          name: "Mad",
+          age: Math.floor(Math.random() * 100),
+        },
+      }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Persons);
