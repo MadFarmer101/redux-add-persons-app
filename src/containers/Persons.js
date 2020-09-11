@@ -1,24 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import Person from "../components/Person/Person";
 import AddPerson from "../components/AddPerson/AddPerson";
 
-class Persons extends Component {
-  render() {
+const Persons = (props) => {
     return (
       <div>
-        <AddPerson personAdded={this.props.onAddPerson} />
-        {this.props.persons.map((person) => (
+        <AddPerson personAdded={props.onAddPerson} />
+        {props.persons.map((person) => (
           <Person
             key={person.id}
             name={person.name}
             age={person.age}
-            clicked={() => this.props.onDeletePerson(person.id)}
+            clicked={() => props.onDeletePerson(person.id)}
           />
         ))}
       </div>
     );
-  }
 }
 
 const mapStateToProps = (state) => {
