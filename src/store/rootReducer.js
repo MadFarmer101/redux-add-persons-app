@@ -3,7 +3,16 @@ const initialState = {
 }
 
 const rootReducer = (state = initialState, action) => {
-  return state
+  switch (action.type) {
+    case 'ADD_PERSON':
+      return {
+        ...state,
+        persons: state.persons.concat(action.payload)
+      }
+        
+    default:
+      return state
+  }
 }
 
 export default rootReducer
