@@ -31,7 +31,7 @@ class Persons extends Component {
     return (
       <div>
         <AddPerson personAdded={this.personAddedHandler} />
-        {this.state.persons.map((person) => (
+        {this.props.persons.map((person) => (
           <Person
             key={person.id}
             name={person.name}
@@ -44,4 +44,10 @@ class Persons extends Component {
   }
 }
 
-export default connect(null)(Persons);
+const mapStateToProps = (state) => {
+  return {
+    persons: state.persons
+  }
+}
+
+export default connect(mapStateToProps)(Persons);
