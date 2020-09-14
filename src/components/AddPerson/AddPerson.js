@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { Component } from "react";
 
-import './AddPerson.css';
+import "./AddPerson.css";
 
-const addPerson = (props) => (
-    <div className="AddPerson">
-        <button onClick={props.personAdded}>Add Person</button>
-    </div>
-);
+class AddPerson extends Component {
+  state = {
+    name: "",
+    age: "",
+  };
+  
+  render() {
+    return (
+      <div className="AddPerson">
+        <input placeholder="Enter your name"></input>
+        <input placeholder="Enter your age"></input>
+        <button onClick={this.props.personAdded}>Add Person</button>
+      </div>
+    );
+  }
+}
 
-export default addPerson;
+export default AddPerson;
