@@ -4,20 +4,20 @@ import Person from "../components/Person/Person";
 import AddPerson from "../components/AddPerson/AddPerson";
 
 const Persons = (props) => {
-    return (
-      <div>
-        <AddPerson personAdded={props.onAddPerson} />
-        {props.persons.map((person) => (
-          <Person
-            key={person.id}
-            name={person.name}
-            age={person.age}
-            clicked={() => props.onDeletePerson(person.id)}
-          />
-        ))}
-      </div>
-    );
-}
+  return (
+    <div>
+      <AddPerson personAdded={props.onAddPerson} />
+      {props.persons.map((person) => (
+        <Person
+          key={person.id}
+          name={person.name}
+          age={person.age}
+          clicked={() => props.onDeletePerson(person.id)}
+        />
+      ))}
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -27,16 +27,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddPerson: () =>
+    onAddPerson: (name, age) =>
       dispatch({
         type: "ADD_PERSON",
         payload: {
           id: Math.random(),
-          name: "Mad",
-          age: Math.floor(Math.random() * 40),
+          name: name,
+          age: age,
         },
       }),
-    onDeletePerson: (id) => dispatch({ type: 'DELETE_PERSON', payload: id})
+    onDeletePerson: (id) => dispatch({ type: "DELETE_PERSON", payload: id }),
   };
 };
 

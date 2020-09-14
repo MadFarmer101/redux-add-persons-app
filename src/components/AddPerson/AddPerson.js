@@ -31,7 +31,13 @@ class AddPerson extends Component {
           onChange={this.changeAgeHandler}
           placeholder="Enter your age"
         ></input>
-        <button onClick={() => this.props.personAdded(this.state.name, this.state.age)}>Add Person</button>
+        <button
+          onClick={() =>
+            this.props.personAdded(this.state.name, this.state.age)
+          }
+        >
+          Add Person
+        </button>
       </div>
     );
   }
